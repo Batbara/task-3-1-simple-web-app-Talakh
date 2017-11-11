@@ -8,5 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public interface Command {
+    String NAME_PARAMETER = "name";
+    String SURNAME_PARAMETER = "surname";
+    String ENTITY_ATTRIBUTE = "users";
     void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserServiceException;
 }

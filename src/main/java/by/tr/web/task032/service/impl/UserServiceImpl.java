@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUser(String name, String surname) throws UserServiceException{
 
-        if(name == null || surname == null){
+        if(name == null || surname == null || name.isEmpty() || surname.isEmpty()){
             throw new UserServiceException(MessageUtil.VALIDATION_EXCEPTION_MESSAGE);
         }
         UserDAO userDAO = DAOFactory.getInstance().getSqlUserDAO();

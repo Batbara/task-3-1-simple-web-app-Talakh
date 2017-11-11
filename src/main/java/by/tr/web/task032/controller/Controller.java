@@ -14,19 +14,23 @@ import java.io.IOException;
 
 public class Controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        CommandDirector commandDirector =  new CommandDirector();
+        CommandDirector commandDirector = new CommandDirector();
         Command command = commandDirector.getCommand(CommandNames.FIND_USER);
         try {
-            command.execute(request,response);
-        } catch (UserServiceException e ) {
-            request.setAttribute("error",e.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
-            dispatcher.forward(request,response);
+            command.execute(request, response);
+        } catch (UserServiceException e) {
+            String ERROR_PAGE_URL = "/WEB-INF/jsp/error.jsp";
+            String ERROR_ATTRIBUTE = "error";
+
+            request.setAttribute(ERROR_ATTRIBUTE, e.getMessage());
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(ERROR_PAGE_URL);
+            dispatcher.forward(request, response);
         }
     }
 }

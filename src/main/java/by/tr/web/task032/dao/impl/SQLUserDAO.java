@@ -22,13 +22,13 @@ public class SQLUserDAO implements UserDAO {
 
         String FIND_USER_QUERY = "SELECT user.usertable.name, user.usertable.surname, " +
                 "user.usertable.phoneNumber, user.usertable.email FROM user.usertable " +
-                "WHERE user.usertable.name =" + name + " AND user.usertable.surname = " + surname;
+                "WHERE user.usertable.name = '" + name + "' AND user.usertable.surname = '" + surname+"'";
         try {
             connection = ConnectorDB.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(FIND_USER_QUERY);
 
-            if (resultSet == null) {
+            if (!resultSet.isBeforeFirst()) {
                 return null;
             }
             List<User> users = createUserList(resultSet);

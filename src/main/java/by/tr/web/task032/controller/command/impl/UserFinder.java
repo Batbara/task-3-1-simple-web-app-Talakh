@@ -17,15 +17,17 @@ public class UserFinder implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserServiceException {
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
+        String name = request.getParameter(Command.NAME_PARAMETER);
+        String surname = request.getParameter(Command.SURNAME_PARAMETER);
+        String USER_DATA_URL = "/WEB-INF/jsp/userData.jsp";
 
         UserService userService = UserServiceFactory.getInstance().getUserService();
-        List<User> user = userService.findUser(name,surname);
+        List<User> users = userService.findUser(name,surname);
 
-        request.setAttribute("user",user);
+        request.setAttribute(Command.ENTITY_ATTRIBUTE,users);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userData.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(USER_DATA_URL);
         dispatcher.forward(request,response);
+
     }
 }
