@@ -6,14 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDirector {
-    private Map<CommandNames, Command> commands = new HashMap<>();
+    private Map<CommandName, Command> commands = new HashMap<>();
 
     public CommandDirector() {
 
-        commands.put(CommandNames.FIND_USER, new UserFinder());
+        commands.put(CommandName.FIND_USER, new UserFinder());
     }
 
-    public Command getCommand(CommandNames name) {
-        return commands.get(name);
+    public Command getCommand(String name) {
+        CommandName commandName = CommandName.valueOf(name);
+        return commands.get(commandName);
     }
 }

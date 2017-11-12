@@ -11,7 +11,7 @@
   </style>
   <body>
   <form action="Controller" method="get">
-    <input type="hidden" name="command" value="datarequest">
+    <input type="hidden" name="command" value="FIND_USER">
     Name:<br>
     <input type="text" name="name" value=""><br>
     Surname:<br>

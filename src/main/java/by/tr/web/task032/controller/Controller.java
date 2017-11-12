@@ -2,7 +2,7 @@ package by.tr.web.task032.controller;
 
 import by.tr.web.task032.controller.command.Command;
 import by.tr.web.task032.controller.command.CommandDirector;
-import by.tr.web.task032.controller.command.CommandNames;
+import by.tr.web.task032.controller.command.CommandName;
 import by.tr.web.task032.exception.UserServiceException;
 
 import javax.servlet.RequestDispatcher;
@@ -13,14 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Controller extends HttpServlet {
+    private final CommandDirector director = new CommandDirector();
+    private static final String CONTENT_TYPE = "text/html";
+    private static final String REQUIRED_PARAMETER = "command";
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        CommandDirector commandDirector = new CommandDirector();
-        Command command = commandDirector.getCommand(CommandNames.FIND_USER);
+
+        response.setContentType(CONTENT_TYPE);
+        String commandName = request.getParameter(REQUIRED_PARAMETER);
+
+        Command command = director.getCommand(commandName);
         try {
             command.execute(request, response);
         } catch (UserServiceException e) {
