@@ -2,7 +2,7 @@ package by.tr.web.task032.dao.impl;
 
 import by.tr.web.task032.exception.DAOException;
 import by.tr.web.task032.dao.UserDAO;
-import by.tr.web.task032.entity.User;
+import by.tr.web.task032.domain.User;
 import by.tr.web.task032.exception.MessageUtil;
 
 import java.sql.Connection;
@@ -20,9 +20,9 @@ public class SQLUserDAO implements UserDAO {
         Statement statement;
         ResultSet resultSet;
 
-        String FIND_USER_QUERY = "SELECT user.usertable.name, user.usertable.surname, " +
-                "user.usertable.phoneNumber, user.usertable.email FROM user.usertable " +
-                "WHERE user.usertable.name = '" + name + "' AND user.usertable.surname = '" + surname+"'";
+        String FIND_USER_QUERY = "SELECT users.usertable.name, users.usertable.surname, " +
+                "users.usertable.phoneNumber, users.usertable.email FROM users.usertable " +
+                "WHERE users.usertable.name = '" + name + "' AND users.usertable.surname = '" + surname+"'";
         try {
             connection = ConnectorDB.getConnection();
             statement = connection.createStatement();

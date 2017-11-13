@@ -1,4 +1,4 @@
-package by.tr.web.task032.entity;
+package by.tr.web.task032.domain;
 
 import java.io.Serializable;
 

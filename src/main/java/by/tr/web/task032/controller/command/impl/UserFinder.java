@@ -1,7 +1,7 @@
 package by.tr.web.task032.controller.command.impl;
 
 import by.tr.web.task032.controller.command.Command;
-import by.tr.web.task032.entity.User;
+import by.tr.web.task032.domain.User;
 import by.tr.web.task032.service.UserService;
 import by.tr.web.task032.exception.UserServiceException;
 import by.tr.web.task032.service.UserServiceFactory;

@@ -4,7 +4,7 @@ package by.tr.web.task032.service.impl;
 import by.tr.web.task032.exception.DAOException;
 import by.tr.web.task032.dao.DAOFactory;
 import by.tr.web.task032.dao.UserDAO;
-import by.tr.web.task032.entity.User;
+import by.tr.web.task032.domain.User;
 import by.tr.web.task032.exception.MessageUtil;
 import by.tr.web.task032.service.UserService;
 import by.tr.web.task032.exception.UserServiceException;
