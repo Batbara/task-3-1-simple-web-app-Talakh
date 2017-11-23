@@ -26,9 +26,12 @@ public class ConnectorDB {
             throw new DAOException(MessageUtil.DRIVER_CLASS_NOT_FOUND);
         }
         try {
-            return DriverManager.getConnection(url,user,password);
+            return DriverManager.getConnection(url,user,password);// только этот оператор должен повторяться при открытии нового соединения
+            // все остальное выше должно выполняться только один раз за всю жизни приложения
         } catch (SQLException e) {
             throw new DAOException(MessageUtil.FAIL_TO_CONNECT_MESSAGE);
+            // потеряла при перевыбросе реальное исключение,  и сообщения в логах и при генерации исключение не выносятся в именовынные константы - они исключение
+            // throw new DAOException("my message", e);
         }
     }
     public static void closeConnection(Connection connection) throws DAOException {
