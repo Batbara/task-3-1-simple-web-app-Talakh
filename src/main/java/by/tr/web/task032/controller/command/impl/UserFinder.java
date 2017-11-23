@@ -23,7 +23,8 @@ public class UserFinder implements Command {
 
         UserService userService = UserServiceFactory.getInstance().getUserService();
         List<User> users = userService.findUser(name,surname);
-
+// обрабатывать ServiceExcetion можено в команде
+        // forward же ты тут вызываешь
         request.setAttribute(Command.ENTITY_ATTRIBUTE,users);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(USER_DATA_URL);
