@@ -20,6 +20,8 @@ public class SQLUserDAO implements UserDAO {
         Statement statement;
         ResultSet resultSet;
 
+        // это надо выносить в поля класса
+        // иначе будешь создавать строку при каждом вызове метода
         String FIND_USER_QUERY = "SELECT users.usertable.name, users.usertable.surname, " +
                 "users.usertable.phoneNumber, users.usertable.email FROM users.usertable " +
                 "WHERE users.usertable.name = '" + name + "' AND users.usertable.surname = '" + surname+"'";
@@ -37,7 +39,7 @@ public class SQLUserDAO implements UserDAO {
         } catch (SQLException e) {
             throw new DAOException(MessageUtil.SQL_EXCEPTION_MESSAGE);
         } finally {
-            try {
+            try {// просто проанализируй свой try-блок, особенно смысл блока catch после исключения в Try
                 if(connection != null) {
                     connection.close();
                 }
